@@ -17,31 +17,31 @@
         });;
     };
 
-	 //default options
+    //default options
     $.fn.dpk.settings = {
         wrapperClass: "dpk-container",
         getWrapper: function(temp) {
-			return $(temp).addClass(this.wrapperClass);
+            return $(temp).addClass(this.wrapperClass);
         },
     };
-	
+
     $.fn.dpkToggle = function(action) {
 
         var defaultSettings = $.fn.dpk.settings;
-		var self=$(this);
+        var self = $(this);
         if (action === "open") {
-			$.get("../datepicker-days.html",function(data){
-				var content=defaultSettings.getWrapper(data);
-				$(content).insertAfter(self);
-			})		
+            $.get("../datepicker-days.html", function(data) {
+                var content = defaultSettings.getWrapper(data);
+                $(content).insertAfter(self);
+            })
 
         } else if (action === "close") {
 
-        	this.siblings("." + defaultSettings.wrapperClass).remove();
+            this.siblings("." + defaultSettings.wrapperClass).remove();
         }
     };
 
-   
+
 
 
 })(jQuery);
