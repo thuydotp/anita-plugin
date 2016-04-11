@@ -1,48 +1,47 @@
-(function ($){  
-   
-    
-  $.fn.dpk=function(){
-        $(this).on("focus",function(){
-            
+"use strict";
+(function($) {
+
+
+    $.fn.dpk = function() {
+        $(this).on("focus", function() {
+
             $(this).dpkToggle("open");
-            
-        }).on("blur",function(){
-            
+
+        }).on("blur", function() {
+
             $(this).dpkToggle("close");
         });
-        return this.each(function(){
-            
-   $(this).attr("dpk-dateinput",true);
-  });; 
- };    
-    
-     $.fn.dpkToggle=function(action){
-        
-        var defaultSettings=$.fn.dpk.settings;
-        
-  if (action ==="open" ){
-            
-   var dpkWrapper=defaultSettings.getWrapper();
-   $(dpkWrapper).insertAfter(this);
-            
-  } else if(action ==="close"){
-            
-   this.siblings("."+defaultSettings.wrapperClass).remove();
-  }
- };
-    
-    //default options
- $.fn.dpk.settings = {
-        wrapperClass:"dpk-container",
-  getWrapper: function (){
-            return "<div class="+this.wrapperClass+"></div>";
-        }
- };
- 
- 
- })(jQuery);
+        return this.each(function() {
 
-//
-$(document).ready(function(){    
-    $(".txtDatepicker").dpk();
-});
+            $(this).attr("dpk-dateinput", true);
+        });;
+    };
+
+	 //default options
+    $.fn.dpk.settings = {
+        wrapperClass: "dpk-container",
+        getWrapper: function(temp) {
+			return $(temp).addClass(this.wrapperClass);
+        },
+    };
+	
+    $.fn.dpkToggle = function(action) {
+
+        var defaultSettings = $.fn.dpk.settings;
+		var self=$(this);
+        if (action === "open") {
+			$.get("../datepicker-days.html",function(data){
+				var content=defaultSettings.getWrapper(data);
+				$(content).insertAfter(self);
+			})		
+
+        } else if (action === "close") {
+
+        	this.siblings("." + defaultSettings.wrapperClass).remove();
+        }
+    };
+
+   
+
+
+})(jQuery);
