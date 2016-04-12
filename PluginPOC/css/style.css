@@ -9,6 +9,9 @@
     margin: 10px 20px;
 }
 
+.visible{
+	visibility: visible;
+}
 
 //---------------------------
 
@@ -655,6 +658,10 @@ ul, ol {
   color: #313534;
   line-height: 18px;
   direction: ltr;
+	
+  background-color: azure;
+  border: 1px solid cadetblue;
+  width: 220px;
 }
 .datepicker-inline {
   width: 220px;
